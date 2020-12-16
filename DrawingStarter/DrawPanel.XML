@@ -1,0 +1,646 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DrawPanel</name>
+    </assembly>
+    <members>
+        <member name="T:DrawPanelLibrary.CartesianPlane">
+            <summary>
+            A DrawingPanel with Cartesian Plane coordinate system.
+            Origin (0, 0) is in middle of window, coordinates are "normal" - y increases bottom to top.
+            Note: because coordinate system is flipped vertically relative to DrawingPanel,
+            Rectangles are defined as (bottom, left, width, height)
+            Incomplete - text, when drawn, is upside down.
+            </summary>
+        </member>
+        <member name="M:DrawPanelLibrary.CartesianPlane.#ctor">
+            <summary>
+            Creates a CartesianPlane with default width and height
+            </summary>
+        </member>
+        <member name="M:DrawPanelLibrary.CartesianPlane.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Creates a DrawingPanel with the given width and height
+            </summary>
+            <param name="width"></param>
+            <param name="height"></param>
+        </member>
+        <member name="T:DrawPanelLibrary.DrawingPanel">
+            <summary>
+            A window you can draw into
+            </summary>
+        </member>
+        <member name="F:DrawPanelLibrary.DrawingPanel.DefaultPanelDimension">
+            <summary>
+            When no dimensions specified, DrawingPanels are DefaultPanelDimension X DefaultPanelDimension
+            </summary>
+        </member>
+        <member name="P:DrawPanelLibrary.DrawingPanel.DumpFilePrefix">
+            <summary>
+            Gets or sets the string that all logged image files start with.
+            By default, this is the current assembly name.
+            </summary>
+        </member>
+        <member name="M:DrawPanelLibrary.DrawingPanel.LogOutput(System.Int32)">
+            <summary>
+            Controls logging of images to disc
+            </summary>
+            <param name="numImageFiles">max files to keep (0 to turn off logging)</param>
+        </member>
+        <member name="F:DrawPanelLibrary.DrawingPanel.Input">
+            <summary>
+            provides access to events and state involving keyboard and mouse when DrawingPanel window is active
+            </summary>
+        </member>
+        <member name="F:DrawPanelLibrary.DrawingPanel.Menus">
+            <summary>
+            allows addition and use of custom menu commands in DrawingPanelwindow
+            </summary>
+        </member>
+        <member name="F:DrawPanelLibrary.DrawingPanel.graphics">
+            <summary>
+            used to draw into this DrawingPanel's bitmap
+            </summary>
+        </member>
+        <member name="P:DrawPanelLibrary.DrawingPanel.Width">
+            <summary>
+            Width of drawing surface
+            </summary>
+        </member>
+        <member name="P:DrawPanelLibrary.DrawingPanel.Height">
+            <summary>
+            Height of drawing surface
+            </summary>
+        </member>
+        <member name="M:DrawPanelLibrary.DrawingPanel.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Creates a DrawingPanel with the given width and height
+            </summary>
+            <param name="width"></param>
+            <param name="height"></param>
+        </member>
+        <member name="M:DrawPanelLibrary.DrawingPanel.#ctor">
+            <summary>
+            Creates a DrawingPanel with default width and height
+            </summary>
+        </member>
+        <member name="M:DrawPanelLibrary.DrawingPanel.#ctor(System.Drawing.Image)">
+            <summary>
+            Creates a DrawingPanel pre-filled with the given image. Dimensions match
+            the image's pixel dimensions (ignoring physical size and DPI properties).
+            </summary>
+            <param name="startingImage"></param>
+        </member>
+        <member name="M:DrawPanelLibrary.DrawingPanel.GetGraphics">
+            <summary>
+            Get a Graphics object that can draw into the DrawingPanel
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DrawPanelLibrary.DrawingPanel.RefreshDisplay">
+            <summary>
+            Updates display with everything drawn to this point
+            </summary>
+        </member>
+        <member name="M:DrawPanelLibrary.DrawingPanel.GetPixelArray">
+            <summary>
+            Returns a 2D array containing the pixels as currently displayed.
+            Color stored at [x, y] corresponds to pixel at (x, y) in DrawingPanel
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DrawPanelLibrary.DrawingPanel.OverWriteDisplay(System.Drawing.Color[0:,0:])">
+            <summary>
+            Replaces the currently displayed image with the pixels of the given 2D array.
+            Color [x, y] in array will be displayed at location (x, y) in DrawingPanel
+            </summary>
+            <param name="replacementPixels"></param>
+        </member>
+        <member name="M:DrawPanelLibrary.DrawingPanel.Save(System.String)">
+            <summary>
+            Save contents of DrawingPanel as a PNG file with the given filename. If filename
+            has an extension other than .png, that extension is removed and replaced with .png
+            </summary>
+            <param name="filename"></param>
+            <returns>actual filename of saved file</returns>
+        </member>
+        <member name="M:DrawPanelLibrary.DrawingPanel.Pause">
+            <summary>
+            Pauses program with default message displayed in message box
+            </summary>
+        </member>
+        <member name="M:DrawPanelLibrary.DrawingPanel.Pause(System.String)">
+            <summary>
+            Pauses program, with given message displayed in message box
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:DrawPanelLibrary.DrawingPanel.Zoom(System.Int32)">
+            <summary>
+            Sets the display's magnifaction to the given zoom factor
+            </summary>
+            <param name="zoomFactor"></param>
+        </member>
+        <member name="M:DrawPanelLibrary.DrawingPanel.HideWindow">
+            <summary>
+            Hides window (DrawingPanel still exists, but will have no display shown)
+            </summary>
+        </member>
+        <member name="M:DrawPanelLibrary.DrawingPanel.ShowWindow">
+            <summary>
+            Shows window (makes previously hidden window visible again)
+            </summary>
+        </member>
+        <member name="M:DrawPanelLibrary.DrawingPanel.MoveWindow(System.Int32,System.Int32)">
+            <summary>
+            Moves window to given location. (x, y) specifies where top left of window will
+            be after the move.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+        </member>
+        <member name="M:DrawPanelLibrary.DrawingPanel.GetWindowLocation">
+            <summary>
+            Gets window's current location (top left of window)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DrawPanelLibrary.DrawingWindow.ZoomWindow(System.Int32)">
+            <summary>
+            Zoom display to given zoom factor. Can be safely called from
+            another (i.e. DrawingPanel's) thread.
+            </summary>
+            <param name="zoomFactor"></param>
+        </member>
+        <member name="M:DrawPanelLibrary.DrawingWindow.AwaitFormDisplay">
+            <summary>
+            Call this method whenever code depends on this Form's window having
+            been properly created/displayed. Possibly not the best way to handle
+            the issue, but makes sense to me, and appears to work well. 
+            </summary>
+        </member>
+        <member name="M:DrawPanelLibrary.DrawingWindow.SafeHide">
+            <summary>
+            Hides window in cross-thread-safe fashion
+            </summary>
+        </member>
+        <member name="M:DrawPanelLibrary.DrawingWindow.SafeShow">
+            <summary>
+            Shows window in cross-thread-safe fashion
+            </summary>
+        </member>
+        <member name="F:DrawPanelLibrary.DrawingWindow.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:DrawPanelLibrary.DrawingWindow.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:DrawPanelLibrary.DrawingWindow.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:DrawPanelLibrary.ImageComparer.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:DrawPanelLibrary.ImageComparer.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:DrawPanelLibrary.ImageComparer.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:DrawPanelLibrary.MessageInFront.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:DrawPanelLibrary.MessageInFront.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:DrawPanelLibrary.MessageInFront.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:UI.ClickInfo">
+            <summary>
+            Holds information associated with a mouse click
+            </summary>
+        </member>
+        <member name="P:UI.ClickInfo.Location">
+            <summary>
+            current location of mouse
+            </summary>
+        </member>
+        <member name="P:UI.ClickInfo.X">
+            <summary>
+            x-coordinate of mouse's current location
+            </summary>
+        </member>
+        <member name="P:UI.ClickInfo.Y">
+            <summary>
+            y-coordinate of mouse's current location
+            </summary>
+        </member>
+        <member name="P:UI.ClickInfo.LeftClick">
+            <summary>
+            true if left mouse button is currently down
+            </summary>
+        </member>
+        <member name="P:UI.ClickInfo.RightClick">
+            <summary>
+            true if right mouse button is currently down
+            </summary>
+        </member>
+        <member name="P:UI.ClickInfo.MiddleClick">
+            <summary>
+            true if middle mouse button is currently down
+            </summary>
+        </member>
+        <member name="M:UI.ClickInfo.ToString">
+            <summary>
+            Converts the value of this instance to its equivalent string representation
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:UI.ICustomMenus">
+            <summary>
+            Provides a means of modifying a Windows Form's menus
+            </summary>
+            <remarks>
+            Implementor is of course responsible for limiting the manner in which
+            items are added and removed. In particular, implementor should protect
+            its existing / internally used menu items from being removed.
+            Suggested mechanism: maintain a collection of all items added by outside
+            code, and allow only those items to be removed by RemoveMenuItem.
+            </remarks>
+        </member>
+        <member name="M:UI.ICustomMenus.GetMainMenus">
+            <summary>
+            Gives outside code access to main menus
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UI.ICustomMenus.AddMenuItem(System.Windows.Forms.ToolStripMenuItem,System.Windows.Forms.ToolStripItemCollection)">
+            <summary>
+            Allows outside code to add custom commands, handled by that outside code
+            </summary>
+            <param name="item"></param>
+            <param name="parent"></param>
+        </member>
+        <member name="M:UI.ICustomMenus.RemoveMenuItem(System.Windows.Forms.ToolStripMenuItem,System.Windows.Forms.ToolStripItemCollection)">
+            <summary>
+            Allows outside code to remove custom commands that it added earlier
+            </summary>
+            <param name="item"></param>
+            <param name="parent"></param>
+        </member>
+        <member name="M:UI.ICustomMenus.ReplaceExitHandler(System.EventHandler,System.Object)">
+            <summary>
+            Allows outside code to override automatic handling of Exit command (usually File/Exit)
+            </summary>
+            <param name="handler"></param>
+            <param name="tag">for custom information, if needed</param>
+        </member>
+        <member name="T:UI.MenuManager">
+            <summary>
+            Manages addition and use of custom menus
+            </summary>
+        </member>
+        <member name="M:UI.MenuManager.#ctor(UI.ICustomMenus)">
+            <summary>
+            Creates a MenuManager for menus added to the given MenuStrip
+            </summary>
+            <param name="parent"></param>
+        </member>
+        <member name="M:UI.MenuManager.AddMenu(System.String)">
+            <summary>
+            Adds a new menu with the given title.
+            Title must be non-blank, and can't include the character '/'.
+            </summary>
+            <param name="title"></param>
+        </member>
+        <member name="M:UI.MenuManager.RemoveMenu(System.String)">
+            <summary>
+            Removes menu with the given title.
+            Does nothing and returns false if menu doesn't exist.
+            </summary>
+            <param name="title"></param>
+        </member>
+        <member name="M:UI.MenuManager.AddMenuItem(System.String,System.String)">
+            <summary>
+            Adds a command with the given text to the menu with the given name/title
+            </summary>
+            <param name="command"></param>
+            <param name="menuName"></param>
+        </member>
+        <member name="M:UI.MenuManager.RemoveMenuItem(System.String,System.String)">
+            <summary>
+            Removes the command with the given text from the menu with the given name/title
+            Does nothing and returns false if menu/command combo doesn't currently exist.
+            </summary>
+            <param name="command"></param>
+            <param name="menuName"></param>
+        </member>
+        <member name="M:UI.MenuManager.TakeOverFileExitDuties">
+            <summary>
+            Turns off automatic handling of DrawingPanel's File/Exit. After calling this method, your
+            code will be responsible for handling Exit like it handles other custom menu commands.
+            </summary>
+        </member>
+        <member name="P:UI.MenuManager.CommandAvailable">
+            <summary>
+            Indicates whether there are any unprocessed menu commands
+            </summary>
+        </member>
+        <member name="M:UI.MenuManager.GetFullCommandName">
+            <summary>
+            Returns menu + command selected by the user - as "menu/command"
+            Commands are returned in the order they were selected. If no command available,
+            throws InvalidOperationException ...so always check CommandAvailable first!!
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UI.MenuManager.GetShortCommandName">
+            <summary>
+            Returns command selected by the user, not including the menu it was selected from
+            Commands are returned in the order they were selected. If no command available,
+            throws InvalidOperationException ...so always check CommandAvailable first!!
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UI.MenuManager.FindMenu(System.String)">
+            <summary>
+            Finds the managed menu with the given name
+            </summary>
+            <param name="name">menu name as seen by user</param>
+            <returns></returns>
+        </member>
+        <member name="M:UI.MenuManager.FindCommand(System.Windows.Forms.ToolStripMenuItem,System.String)">
+            <summary>
+            Finds the given command within the given menu
+            </summary>
+            <param name="menu">menu name as seen by user</param>
+            <param name="name">command name as seen by user</param>
+            <returns></returns>
+        </member>
+        <member name="M:UI.MouseListener.FlushClickBuffer">
+            <summary>
+            Clears out any mouse click events recorded before the call to this method
+            </summary>
+        </member>
+        <member name="P:UI.MouseListener.ClickAvailable">
+            <summary>
+            Indicates whether there are any unprocessed mouse click events
+            </summary>
+        </member>
+        <member name="M:UI.MouseListener.ReadClick">
+            <summary>
+            Returns mouse click location. Clicks are processed in the order they occured.
+            If no click available, throws InvalidOperationException ...so always check ClickAvailable first!!
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:UI.SpecialKeys">
+            <summary>
+            Selected control keys recognized by DrawPanel
+            </summary>
+        </member>
+        <member name="F:UI.SpecialKeys.None">
+            <summary>
+            none
+            </summary>
+        </member>
+        <member name="F:UI.SpecialKeys.Up">
+            <summary>
+            up arrow key
+            </summary>
+        </member>
+        <member name="F:UI.SpecialKeys.Down">
+            <summary>
+            down arrow key
+            </summary>
+        </member>
+        <member name="F:UI.SpecialKeys.Left">
+            <summary>
+            left arrow key
+            </summary>
+        </member>
+        <member name="F:UI.SpecialKeys.Right">
+            <summary>
+            right arrow key
+            </summary>
+        </member>
+        <member name="F:UI.SpecialKeys.ShiftKey">
+            <summary>
+            shift key
+            </summary>
+        </member>
+        <member name="F:UI.SpecialKeys.ControlKey">
+            <summary>
+            control key
+            </summary>
+        </member>
+        <member name="F:UI.SpecialKeys.AltKey">
+            <summary>
+            alt key
+            </summary>
+        </member>
+        <member name="F:UI.SpecialKeys.Escape">
+            <summary>
+            escape key
+            </summary>
+        </member>
+        <member name="F:UI.SpecialKeys.Tab">
+            <summary>
+            tab key
+            </summary>
+        </member>
+        <member name="F:UI.SpecialKeys.NumPad0">
+            <summary>
+            0 on numeric keypad
+            </summary>
+        </member>
+        <member name="F:UI.SpecialKeys.NumPad1">
+            <summary>
+            1 on numeric keypad
+            </summary>
+        </member>
+        <member name="F:UI.SpecialKeys.NumPad2">
+            <summary>
+            2 on numeric keypad
+            </summary>
+        </member>
+        <member name="F:UI.SpecialKeys.NumPad3">
+            <summary>
+            3 on numeric keypad
+            </summary>
+        </member>
+        <member name="F:UI.SpecialKeys.NumPad4">
+            <summary>
+            4 on numeric keypad
+            </summary>
+        </member>
+        <member name="F:UI.SpecialKeys.NumPad5">
+            <summary>
+            5 on numeric keypad
+            </summary>
+        </member>
+        <member name="F:UI.SpecialKeys.NumPad6">
+            <summary>
+            6 on numeric keypad
+            </summary>
+        </member>
+        <member name="F:UI.SpecialKeys.NumPad7">
+            <summary>
+            7 on numeric keypad
+            </summary>
+        </member>
+        <member name="F:UI.SpecialKeys.NumPad8">
+            <summary>
+            8 on numeric keypad
+            </summary>
+        </member>
+        <member name="F:UI.SpecialKeys.NumPad9">
+            <summary>
+            9 on numeric keypad
+            </summary>
+        </member>
+        <member name="M:UI.KeyListener.KeyDown(System.Char)">
+            <summary>
+            Returns true if the given key, specified by character, is currently down
+            Currently recognizes just letters, 0-9 (on main keyboard), and space
+            </summary>
+            <param name="key">character printed on key</param>
+            <returns></returns>
+        </member>
+        <member name="M:UI.KeyListener.KeyDown(UI.SpecialKeys)">
+            <summary>
+            Returns true if the given key, specified by key code, is currently down
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UI.KeyListener.FlushKeyBuffer">
+            <summary>
+            Clears out any key presses recorded before the call to this method
+            </summary>
+        </member>
+        <member name="P:UI.KeyListener.KeyAvailable">
+            <summary>
+            Indicates whether there are any unprocessed key presses
+            </summary>
+        </member>
+        <member name="M:UI.KeyListener.ReadKey">
+            <summary>
+            Returns key typed by the user. Keys are returned in the order they were pressed.
+            If no key available, throws InvalidOperationException ...so always check KeyAvailable first!!
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:UI.UserInput">
+            <summary>
+            Provides a means of accessing events and current state for keyboard and mouse
+            </summary>
+        </member>
+        <member name="M:UI.UserInput.FlushKeys">
+            <summary>
+            Clears out any key presses recorded before the call to this method
+            </summary>
+        </member>
+        <member name="P:UI.UserInput.KeyAvailable">
+            <summary>
+            Indicates whether there are any unprocessed key presses
+            </summary>
+        </member>
+        <member name="M:UI.UserInput.ReadKey">
+            <summary>
+            Returns the next key that was typed by the user. If no key available, keeps polling until one is.
+            ...So use KeyAvailable if you don't want to be blocked waiting for a key!
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UI.UserInput.KeyDown(System.Char)">
+            <summary>
+            Returns true if the given key, specified by character, is currently down.
+            Currently recognizes just letters, 0-9 (on main keyboard), and space
+            </summary>
+            <param name="key">character printed on key</param>
+            <returns></returns>
+        </member>
+        <member name="M:UI.UserInput.KeyDown(UI.SpecialKeys)">
+            <summary>
+            Returns true if the given key, specified by SpecialKeys code, is currently down
+            </summary>
+            <param name="key">SpecialKeys code for key</param>
+            <returns></returns>
+        </member>
+        <member name="M:UI.UserInput.FlushClicks">
+            <summary>
+            Clears out any mouse click events recorded before the call to this method
+            </summary>
+        </member>
+        <member name="P:UI.UserInput.ClickAvailable">
+            <summary>
+            Indicates whether there are any unprocessed mouse click events
+            </summary>
+        </member>
+        <member name="M:UI.UserInput.ReadClick">
+            <summary>
+            Returns the next click from the user. If no click available, keeps polling until one is
+            ...So use ClickAvailable if you don't want to be blocked waiting for a click!
+            Note: does not take zoom factor into account
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:UI.UserInput.CurrentMousePos">
+            <summary>
+            Most recent recorded position of mouse relative to DrawingPanel.
+            Note: does not take zoom factor into account
+            </summary>
+        </member>
+        <member name="P:UI.UserInput.MouseWithinDisplay">
+            <summary>
+            True if mouse is currently within the bounds of the drawing surface
+            </summary>
+        </member>
+        <member name="P:UI.UserInput.LeftButtonDown">
+            <summary>
+            True if left mouse button is currently depressed
+            </summary>
+        </member>
+        <member name="P:UI.UserInput.RightButtonDown">
+            <summary>
+            True if right mouse button is currently depressed
+            </summary>
+        </member>
+        <member name="P:UI.UserInput.MiddleButtonDown">
+            <summary>
+            True if middle mouse button is currently depressed
+            </summary>
+        </member>
+        <member name="P:UI.UserInput.MouseButtonDown">
+            <summary>
+            True if any mouse button is currently depressed
+            </summary>
+        </member>
+    </members>
+</doc>
