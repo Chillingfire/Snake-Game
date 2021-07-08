@@ -1,5 +1,5 @@
 # Snake-Game
-*This project was created by Daniel Kantor*
+<b><i>Learning Purpose of this Project:</b> To create a "Snake" game without any proper game engine and to only use C#'s System.Drawing library and "DrawPanelLibrary".</i>
 
 This specific varient of Snake was created using the System.Drawing library and "DrawPanelLibrary".
 
